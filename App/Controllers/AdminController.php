@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Core\AControllerBase;
 use App\Core\Responses\Response;
 
+
 /**
  * Class HomeController
  * Example class of a controller
@@ -28,6 +29,6 @@ class AdminController extends AControllerBase
      */
     public function index(): Response
     {
-        return $this->html();
+        return $this->redirect($this->url('home.index'));
     }
 }

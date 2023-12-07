@@ -8,6 +8,16 @@ use App\Core\IAuthenticator;
  * Class DummyAuthenticator
  * Basic implementation of user authentication
  * @package App\Auth
+<?php
+
+namespace App\Auth;
+
+use App\Core\IAuthenticator;
+
+/**
+ * Class DummyAuthenticator
+ * Basic implementation of user authentication
+ * @package App\Auth
  */
 class DummyAuthenticator implements IAuthenticator
 {

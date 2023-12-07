@@ -1,7 +1,57 @@
-.navbar {
-    border-bottom: 1px solid grey;
+.welcome {
+    text-align:  center;
+    font-size: xxx-large;
+    color: indianred;
 }
-
-.navbar-brand img {
-    width: 50px;
+.paragraph {
+    text-align: center;
+}
+h1 {
+    font-size: xxx-large;
+    color: indianred;
+}
+h2 {
+    font-size: x-large;
+    color: grey;
+}
+h3 {
+    font-size: x-large;
+    color: black;
+}
+.card-text {
+    font-size: x-large;
+}
+.carousel {
+    width: 100%;
+    height: 75vw;
+    overflow: hidden;
+}
+.carousel-caption {
+    top: 35%;
+    bottom: auto;
+    background-color: aquamarine;
+}
+.logo {
+    height: 20%;
+    width: 20%;
+}
+.card-img-top {
+    width: 100%;
+    height: 20vw;
+    object-fit:contain;
+}
+footer {
+    font-size: x-large;
+}
+header {
+    font-size: x-large;
+}
+.btn {
+    font-size: large;
+}
+.form-control {
+    font-size: large;
+}
+.text-muted {
+    font-size: large;
 }

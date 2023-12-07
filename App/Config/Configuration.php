@@ -2,7 +2,7 @@
 
 namespace App\Config;
 
-use App\Auth\DummyAuthenticator;
+use App\Auth\SimpleAuthenticator;
 use App\Core\ErrorHandler;
 
 /**
@@ -15,7 +15,7 @@ class Configuration
     /**
      * App name
      */
-    public const APP_NAME = 'Vaííčko MVC FW';
+    public const APP_NAME = 'Home';
     public const FW_VERSION = '2.2';
 
     /**
@@ -46,7 +46,8 @@ class Configuration
     /**
      * Class used as authenticator. Must implement IAuthenticator
      */
-    public const AUTH_CLASS = DummyAuthenticator::class;
+
+    public const AUTH_CLASS = SimpleAuthenticator::class;
     /**
      * Class used as error handler. Must implement IHandleError
      */
