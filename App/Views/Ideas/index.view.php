@@ -11,7 +11,7 @@ $layout = 'root';
 <div class="album py-5 bg-light">
     <div class="container-fluid">
         <div class="row g-3 justify-content-center">
-            <?php foreach ($data['posts'] as $ideas): ?>
+            <?php foreach ($data['ideas'] as $ideas): ?>
             <div class="d-md-block d-lg-block d-xl-block  col-md-12 col-lg-4 col-xl-3">
                 <div class="card shadow-sm">
                     <img src="<?= \App\Helpers\FileStorage::UPLOAD_DIR . '/' . $ideas->getPicture()?>" class="img-fluid">
