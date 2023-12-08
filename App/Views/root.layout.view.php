@@ -46,7 +46,7 @@
             <div class="text-end">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $link->url("post.add") ?>"><button type="button" class="btn btn-outline-dark me-2">+</button></a>
+                        <a class="nav-link" href="<?= $link->url("ideas.add") ?>"><button type="button" class="btn btn-outline-dark me-2">+</button></a>
                     </li>
                 </ul>
                 <?php if ($auth->isLogged()) { ?>

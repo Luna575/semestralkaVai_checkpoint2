@@ -8,9 +8,9 @@ use MongoDB\BSON\Timestamp;
 class Ideas extends Model
 {
     protected ?int $id = null;
-    protected string $text = "";
+    protected ?string $text = "";
     protected string $picture = "";
-    protected \DateTime $date;
+    protected  string $date;
     protected string $theme = "";
     protected string $type ="";
     public function getTheme(): string
@@ -34,14 +34,14 @@ class Ideas extends Model
     }
 
 
-    public function getDate(): \DateTime
+    public function getDate(): string
     {
         return $this->date;
     }
 
     public function setDate(): void
     {
-        $this->date = new \DateTime('now', \DateTimeZone::EUROPE);
+        $this->date = date("Y-m-d h:m:s",time());
     }
     public function getId(): ?int
     {

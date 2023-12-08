@@ -20,16 +20,18 @@
         <div>Original file: <?= substr($data['ideas']->getPicture(), strpos($data['ideas']->getPicture(), '-') + 1)  ?></div>
     <?php endif; ?>
     <div class="input-group mb-3 has-validation">
-         <input type="text" class="form-control" name="picture" id="inputGroupFile02" value="<?= @$data['ideas']?->getPicture() ?>" required autofocus>
+        <input type="file" class="form-control " name="picture" id="inputGroupFile02">
 
     </div>
     <label for="ideas-text" class="form-label">Text to describe idea</label>
     <div class="input-group has-validation mb-3 ">
         <textarea class="form-control" aria-label="With textarea" name="text" id="ideas-text"><?= @$data['ideas']?->getText() ?></textarea>
     </div>
+    <label for="ideas-text" class="form-label">The subject of idea</label>
     <div class="input-group has-validation mb-3 ">
         <textarea class="form-control" aria-label="With textarea" name="theme" id="ideas-theme" required autofocus><?= @$data['ideas']?->getTheme() ?></textarea>
     </div>
+    <label for="ideas-text" class="form-label">The type of idea</label>
     <div class="input-group has-validation mb-3 ">
         <textarea class="form-control" aria-label="With textarea" name="type" id="ideas-type" required autofocus><?= @$data['ideas']?->getType() ?></textarea>
     </div>

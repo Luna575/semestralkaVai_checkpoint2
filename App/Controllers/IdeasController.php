@@ -20,7 +20,9 @@ class IdeasController extends AControllerBase
      */
     public function index(): Response
     {
-        return $this->html();
+        return  $this->html([
+            'ideas' => Ideas::getAll()
+        ]);
     }
 
     public function add(): Response
@@ -91,10 +93,10 @@ class IdeasController extends AControllerBase
             $ideas = new Ideas();
         }
         $ideas->setText($this->request()->getValue('text'));
-        $ideas->setPicture($this->request()->getFiles()['picture']['name']);
-        $ideas->setType($this->request()->getFiles()['type']);
-        $ideas->setTheme($this->request()->getFiles()['theme']);
+        $ideas->setType($this->request()->getValue('type'));
+        $ideas->setTheme($this->request()->getValue('theme'));
         $ideas->setDate();
+        $ideas->setPicture($this->request()->getFiles()['picture']['name']);
         $formErrors = $this->formErrors();
         if (count($formErrors) > 0) {
             return $this->html(
@@ -148,7 +150,7 @@ class IdeasController extends AControllerBase
         if ($this->request()->getValue('type') == "") {
             $errors[] = "The field Type of the idea must be filled!";
         }
-        if ($this->request()->getValue('type') != "" && strlen($this->request()->getValue('type') > 1)) {
+        if ($this->request()->getValue('type') != "" && strlen($this->request()->getValue('type')) > 1) {
             $errors[] = "The number of characters in the idea post type must be 1!";
         }
         return $errors;

@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS `ideas`;
 CREATE TABLE `ideas` (
                          `theme` text NOT NULL,
                          `type` char(1) NOT NULL,
-                         `date` datetime NOT NULL,
+                         `date` text NOT NULL DEFAULT '0000-00-00 00:00:00',
                          `id` int(11) NOT NULL AUTO_INCREMENT,
                          `text` text DEFAULT NULL,
                          `picture` varchar(300) NOT NULL,

@@ -11,8 +11,8 @@ $layout = 'root';
 <div class="album py-5 bg-light">
     <div class="container-fluid">
         <div class="row g-3 justify-content-center">
-            <?php foreach ($data['ideas'] as $ideas): ?>
             <div class="d-md-block d-lg-block d-xl-block  col-md-12 col-lg-4 col-xl-3">
+                <?php foreach ($data['ideas'] as $ideas): ?>
                 <div class="card shadow-sm">
                     <img src="<?= \App\Helpers\FileStorage::UPLOAD_DIR . '/' . $ideas->getPicture()?>" class="img-fluid">
                     <div class="card-body">
@@ -20,14 +20,14 @@ $layout = 'root';
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <a class="btn btn-sm btn-outline-secondary" href="view.html" role="button" aria-disabled="false">View</a>
-                                <a href="<?= $link->url('post.edit', ['id' => $ideas->getId()]) ?>" class="btn btn-primary">Edit</a>
-                                <a href="<?= $link->url('post.delete', ['id' => $ideas->getId()]) ?>" class="btn btn-danger">Delete</a>
+                                <a href="<?= $link->url('ideas.edit', ['id' => $ideas->getId()]) ?>" class="btn btn-primary">Edit</a>
+                                <a href="<?= $link->url('ideas.delete', ['id' => $ideas->getId()]) ?>" class="btn btn-danger">Delete</a>
                             </div>
-                            <small class="text-muted"><?= $ideas->getDate()?></small>
+                            <small class="text-muted"><?= $ideas->getDate()?> </small>
                         </div>
                     </div>
+                    <?php endforeach; ?>
                 </div>
-                <?php endforeach; ?>
             </div>
         </div>
     </div>
