@@ -42,15 +42,3 @@
         <span class="visually-hidden">Next</span>
     </button>
 </div>
-<footer class="mt-auto">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item"><a href="home.html" class="nav-link px-2 text-secondary">Home</a></li>
-        <li class="nav-item"><a href="ideas.html" class="nav-link px-2 text-secondary">All</a></li>
-        <li class="nav-item"><a href="ideas.html" class="nav-link px-2 text-secondary">Drawings</a></li>
-        <li class="nav-item"><a href="ideas.html" class="nav-link px-2 text-secondary">Activity</a></li>
-        <li class="nav-item"><a href="ideas.html" class="nav-link px-2 text-secondary">Pictures</a></li>
-        <li class="nav-item"><a href="#" class="nav-link px-2 text-secondary">About</a></li>
-    </ul>
-</footer>
-</body>
-</html>

@@ -1,14 +1,29 @@
 <?php
 namespace App\Auth;
+use App\Models\Users;
+use Couchbase\User;
+
 class SimpleAuthenticator extends DummyAuthenticator {
 
     public function  login($login, $password): bool
     {
-        // user is logged in when login equals password
-        if ($login == $password) {
-            $_SESSION['user'] = $login;
-            return true;
-        } else {
+        $users = Users::getAll();
+        $user = null;
+        foreach ($users as $u){
+           if ($u->getName() == $login) {
+               $user = $u;
+           }
+        }
+        if($user != null){
+            $hash = $user->getPassword();
+            if (password_verify($password, $hash)) {
+                $_SESSION['user'] = $login;
+                return true;
+            }else{
+                return false;
+            }
+        }
+        else {
             return false;
         }
     }

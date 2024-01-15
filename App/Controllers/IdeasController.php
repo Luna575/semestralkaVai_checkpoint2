@@ -32,20 +32,20 @@ class IdeasController extends AControllerBase
         // Formular bol odoslany
         if ($formData != []) {
             // Validacia
-            if (empty($formData['text'])) {
-                $errors[] = "Pole 'text' musi byt vyplnene";
-            }
             if (empty($formData['picture'])) {
-                $errors[] = "Pole 'picture' musi byt vyplnene";
+                $errors[] = "Image file field must be filled!";
             }
-            if (!filter_var($formData['picture'], FILTER_VALIDATE_URL)) {
-                $errors[] = "Pole 'picture' musi byt url adresa";
+            if ($formData['picture']['name'] != "" && !in_array($formData['picture']['type'], ['image/jpeg', 'image/png'])) {
+                $errors[] = "The image must be of JPG or PNG type!";
             }
-            if (empty($formData['theme'])) {
-                $errors[] = "Pole 'theme' musi byt vyplnene";
+            if (empty($formData['title'])) {
+                $errors[] = "The field Title of the idea must be filled!";
             }
             if (empty($formData['type'])) {
-                $errors[] = "Pole 'type' musi byt vyplnene";
+                $errors[] = "The field Type of the idea must be filled!";
+            }
+            if (!empty($formData['title'])  && strlen($formData['title']) > 30) {
+                $errors[] = "The number of characters in the title of the idea  must be max 30 characters!";
             }
 
             // Ak nemame chyby
@@ -54,14 +54,14 @@ class IdeasController extends AControllerBase
                 $ideas->setText($formData['text']);
                 $ideas->setPicture($formData['picture']);
                 $ideas->setDate();
-                $ideas->setTheme($formData['theme']);
+                $ideas->setTitle($formData['title']);
                 $ideas->setType($formData['type']);
                 $ideas->save();
                 return $this->redirect($this->url("ideas.index"));
             }
         }
 
-        return $this->html(["errors" => $errors, "formData" => $formData], "form");
+        return $this->html(["errors" => $errors, "formData" => $formData], "add");
     }
 
 
@@ -94,23 +94,28 @@ class IdeasController extends AControllerBase
         }
         $ideas->setText($this->request()->getValue('text'));
         $ideas->setType($this->request()->getValue('type'));
-        $ideas->setTheme($this->request()->getValue('theme'));
+        $ideas->setTitle($this->request()->getValue('title'));
         $ideas->setDate();
         $ideas->setPicture($this->request()->getFiles()['picture']['name']);
+        if ($this->request()->getFiles()['picture']['name'] =="" &&  $id > 0) {
+            $ideas->setPicture($oldFileName);
+        }
         $formErrors = $this->formErrors();
         if (count($formErrors) > 0) {
             return $this->html(
                 [
                     'ideas' => $ideas,
                     'errors' => $formErrors
-                ], 'add'
+                ], 'form'
             );
         } else {
-            if ($oldFileName != "") {
+            if ($oldFileName != "" && $this->request()->getFiles()['picture']['name'] != "") {
                 FileStorage::deleteFile($oldFileName);
             }
-            $newFileName = FileStorage::saveFile($this->request()->getFiles()['picture']);
-            $ideas->setPicture($newFileName);
+            if($this->request()->getFiles()['picture']['name'] != "") {
+                $newFileName = FileStorage::saveFile($this->request()->getFiles()['picture']);
+                $ideas->setPicture($newFileName);
+            }
             $ideas->save();
             return new RedirectResponse($this->url("ideas.index"));
         }
@@ -133,19 +138,18 @@ class IdeasController extends AControllerBase
     private function formErrors(): array
     {
         $errors = [];
-        if ($this->request()->getFiles()['picture']['name'] == "") {
+        if ($this->request()->getFiles()['picture']['name'] == "" && $this->request()->getValue('id') < 0) {
             $errors[] = "Image file field must be filled!";
         }
-
         if ($this->request()->getFiles()['picture']['name'] != "" && !in_array($this->request()->getFiles()['picture']['type'], ['image/jpeg', 'image/png'])) {
             $errors[] = "The image must be of JPG or PNG type!";
         }
 
-        if ($this->request()->getValue('theme') == "") {
-            $errors[] = "The field Theme of the idea must be filled!";
+        if ($this->request()->getValue('title') == "") {
+            $errors[] = "The field Title of the idea must be filled!";
         }
-        if ($this->request()->getValue('theme') != "" && strlen($this->request()->getValue('theme') < 3)) {
-            $errors[] = "The number of characters in the idea post subject must be more than 3!";
+        if ($this->request()->getValue('title') != "" && strlen($this->request()->getValue('title')) > 30) {
+            $errors[] = "The number of characters in the title of the idea  must be max 30 characters!";
         }
         if ($this->request()->getValue('type') == "") {
             $errors[] = "The field Type of the idea must be filled!";

@@ -101,6 +101,7 @@ abstract class Model implements \JsonSerializable
         }
     }
 
+
     /**
      * Return DB connection, ready for custom developer use
      * @return null

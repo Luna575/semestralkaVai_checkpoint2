@@ -21,17 +21,16 @@
     <?php endif; ?>
     <div class="input-group mb-3 has-validation">
         <input type="file" class="form-control " name="picture" id="inputGroupFile02">
-
     </div>
     <label for="ideas-text" class="form-label">Text to describe idea</label>
     <div class="input-group has-validation mb-3 ">
         <textarea class="form-control" aria-label="With textarea" name="text" id="ideas-text"><?= @$data['ideas']?->getText() ?></textarea>
     </div>
-    <label for="ideas-text" class="form-label">The subject of idea</label>
+    <label for="ideas-title" class="form-label">Title of idea</label>
     <div class="input-group has-validation mb-3 ">
-        <textarea class="form-control" aria-label="With textarea" name="theme" id="ideas-theme" required autofocus><?= @$data['ideas']?->getTheme() ?></textarea>
+        <textarea class="form-control" aria-label="With textarea" name="title" id="ideas-title" required autofocus><?= @$data['ideas']?->getTitle() ?></textarea>
     </div>
-    <label for="ideas-text" class="form-label">The type of idea</label>
+    <label for="ideas-type" class="form-label">The type of idea</label>
     <div class="input-group has-validation mb-3 ">
         <textarea class="form-control" aria-label="With textarea" name="type" id="ideas-type" required autofocus><?= @$data['ideas']?->getType() ?></textarea>
     </div>

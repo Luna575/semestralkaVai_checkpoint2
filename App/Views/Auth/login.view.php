@@ -27,6 +27,7 @@ $layout = 'auth';
                         <div class="text-center">
                             <button class="btn btn-primary" type="submit" name="submit">Sign in
                             </button>
+                            <a class="nav-link" href="<?= $link->url("users.index")?>"><button type="button" class="btn btn-white">Create account</button></a>
                         </div>
                     </form>
                 </div>

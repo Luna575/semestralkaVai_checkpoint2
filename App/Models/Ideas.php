@@ -11,16 +11,27 @@ class Ideas extends Model
     protected ?string $text = "";
     protected string $picture = "";
     protected  string $date;
-    protected string $theme = "";
-    protected string $type ="";
-    public function getTheme(): string
+    protected string $title = "";
+    protected string $user = "";
+
+    public function getUser(): string
     {
-        return $this->theme;
+        return $this->user;
     }
 
-    public function setTheme(string $theme): void
+    public function setUser(string $user): void
     {
-        $this->theme = $theme;
+        $this->user = $user;
+    }
+    protected string $type ="";
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
     }
 
     public function getType(): string
