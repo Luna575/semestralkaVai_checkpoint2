@@ -42,4 +42,17 @@ class UsersController extends AControllerBase
 
         return $this->html(["errors" => $errors, "formData" => $formData], "index");
     }
+    public function getUser(): Response
+    {
+        $user=$this->request()->getValue('user');
+        $users = Users::getAll(" name LIKE ? ", [
+            $user,
+        ]);
+        if ($users != null){
+           $result = false;
+        }else{
+            $result=true;
+        }
+        return $this->json($result);
+    }
 }

@@ -11,17 +11,17 @@ $layout = 'auth';
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Sign in</h5>
-                    <div class="text-center text-danger mb-3">
+                    <div class="text-center text-danger mb-3" id = "error">
                         <?= @$data['message'] ?>
                     </div>
                     <form class="form-signin" method="post" action="<?= $link->url("login") ?>">
                         <div class="form-label-group mb-3">
-                            <input name="login" type="text" id="login" class="form-control" placeholder="Login"
+                            <input name="login" type="text" id="login" class="form-control" placeholder="Login" aria-label=""
                                    required autofocus>
                         </div>
 
                         <div class="form-label-group mb-3">
-                            <input name="password" type="password" id="password" class="form-control"
+                            <input name="password" type="password" id="password" class="form-control" aria-label=""
                                    placeholder="Password" required>
                         </div>
                         <div class="text-center">

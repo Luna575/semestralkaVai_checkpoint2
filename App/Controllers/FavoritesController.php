@@ -24,7 +24,10 @@ class FavoritesController extends AControllerBase
         $path= (string)$this->request()->getValue('path');
         $parameters= (array)$this->request()->getValue('par') != null ? (array)$this->request()->getValue('par'):[];
         $errors = [];
-        $formData = $this->request()->getPost();
+        $favorites = Favorites::getAll("`name` LIKE ? AND `idea` LIKE ?",[$user,$idea]);
+        if($favorites!=null){
+           $errors[]= "Already exists!";
+        }
         if ($user==null) {
             $errors[] = "User was not found!";
         }

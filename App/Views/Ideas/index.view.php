@@ -35,9 +35,9 @@ $layout = 'root';
                                         <?php }?>
                                         <?php $favorites = Favorites::getAll('`name` LIKE ? AND `idea` LIKE ? ', [$auth->getLoggedUserName(),$ideas->getId()]);?>
                                         <?php if($favorites == null){?>
-                                            <a class="nav-link" href="<?= $link->url("favorites.add", ['user'=>$auth->getLoggedUserName(), 'idea'=> $ideas->getId(), 'path'=> "ideas.index"]) ?>"><i class="bi bi-heart"></i></a>
+                                            <a class="btn btn-outline-dark" href="<?= $link->url("favorites.add", ['user'=>$auth->getLoggedUserName(), 'idea'=> $ideas->getId(), 'path'=> "ideas.index"]) ?>"><i class="bi bi-heart"></i></a>
                                         <?php }else {?>
-                                            <a class="nav-link" href="<?= $link->url("favorites.delete", ['user'=>$auth->getLoggedUserName(), 'idea'=> $ideas->getId(), 'path'=> "ideas.index"]) ?>"><i class="bi bi-heart-fill"></i></a>
+                                            <a class="btn btn-outline-dark" href="<?= $link->url("favorites.delete", ['user'=>$auth->getLoggedUserName(), 'idea'=> $ideas->getId(), 'path'=> "ideas.index"]) ?>"><i class="bi bi-heart-fill"></i></a>
                                         <?php }?>
                                     <?php }?>
                                 </div>

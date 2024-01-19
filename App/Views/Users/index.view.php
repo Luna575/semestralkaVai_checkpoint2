@@ -10,26 +10,26 @@
             <h1>Sign up</h1>
             <?php if (!is_null(@$data['errors'])): ?>
                 <?php foreach ($data['errors'] as $error): ?>
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-danger" role="alert" >
                         <?= $error ?>
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
-
+            <div class="message" role="alert" id="message">
+            </div>
             <form method="post" action="<?= $link->url('users.index') ?>" enctype="multipart/form-data">
 
                 <div class="form-label-group mb-3">
-                    <input name="name" type="text" id="name" class="form-control" placeholder="Name"
-                           required autofocus>
+                    <input name="name" type="text" id="name" class="form-control" placeholder="Name" oninput="userExists(this.value)"
+                           aria-label="" required autofocus>
                 </div>
-
                 <div class="form-label-group mb-3">
                     <input name="password" type="password" id="password" class="form-control"
-                           placeholder="Password" required>
+                           aria-label="" placeholder="Password" required>
                 </div>
                 <div class="form-label-group mb-3">
                     <input name="verify_password" type="password" id="verify_password" class="form-control"
-                           placeholder="Verify password" required>
+                          aria-label="" placeholder="Verify password" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
