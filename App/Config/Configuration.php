@@ -15,7 +15,7 @@ class Configuration
     /**
      * App name
      */
-    public const APP_NAME = 'Home';
+    public const APP_NAME = 'Interest';
     public const FW_VERSION = '2.2';
 
     /**

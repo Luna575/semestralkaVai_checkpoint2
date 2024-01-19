@@ -4,13 +4,21 @@ namespace App\Models;
 
 use App\Core\Model;
 
-class Comment extends Model
+class Themes extends Model
 {
     protected ?int $id = null;
     protected string $text = "";
-    protected string $user;
-    protected int $idea;
+    protected string $icon="";
 
+    public function getIcon(): string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon): void
+    {
+        $this->icon = $icon;
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -31,23 +39,4 @@ class Comment extends Model
         $this->text = $text;
     }
 
-    public function getUser(): string
-    {
-        return $this->user;
-    }
-
-    public function setUser(string $user): void
-    {
-        $this->user = $user;
-    }
-
-    public function getIdea(): int
-    {
-        return $this->idea;
-    }
-
-    public function setIdea(int $idea): void
-    {
-        $this->idea = $idea;
-    }
 }

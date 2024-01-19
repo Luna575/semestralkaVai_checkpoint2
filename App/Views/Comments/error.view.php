@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6 d-flex gap-4  flex-column">
-            <h1>Add new ideas</h1>
+            <h1>There was an error</h1>
 
             <?php require 'form.view.php' ?>
 
@@ -20,7 +20,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6 d-flex gap-4  flex-column">
-            <h1>If you want to add an idea, you need to be logged!!!
+            <h1>You need to be logged to see this page!!!
                 Please sign up.
             </h1>
 

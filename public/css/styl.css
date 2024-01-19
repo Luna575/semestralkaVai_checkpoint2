@@ -1,7 +1,6 @@
-.welcome {
-    text-align:  center;
-    font-size: xxx-large;
-    color: indianred;
+body, html {
+    height: 100%;
+    font-family: "Times New Roman",sans-serif;
 }
 .paragraph {
     text-align: center;
@@ -38,18 +37,27 @@ h3 {
     object-fit: cover;
     height: 200px;
 }
-footer {
+footer,header {
     font-size: x-large;
 }
-header {
-    font-size: x-large;
+
+h1:hover{
+    font-size: xxx-large;
+    color: black;
 }
-.btn {
+.dropdown-item:hover {
+    background-color: mediumseagreen;
+}
+.btn, .form-control, .text-muted {
     font-size: large;
 }
-.form-control {
-    font-size: large;
+.card{
+    font-style: italic;
 }
-.text-muted {
-    font-size: large;
+.card-img:hover, .card-body:hover{
+    box-shadow: 0 0 2px 2px rgba(0, 170, 120, 100);
+}
+.heart{
+    width: 150%;
+    height: 150%;
 }

@@ -7,17 +7,12 @@ class SimpleAuthenticator extends DummyAuthenticator {
 
     public function  login($login, $password): bool
     {
-        $users = Users::getAll();
-        $user = null;
-        foreach ($users as $u){
-           if ($u->getName() == $login) {
-               $user = $u;
-           }
-        }
+        $user = Users::getAll('`name` LIKE ?', [$login]);
         if($user != null){
-            $hash = $user->getPassword();
+            $hash = $user[0]->getPassword();
             if (password_verify($password, $hash)) {
                 $_SESSION['user'] = $login;
+                $_SESSION['rola'] = $user[0]->getRola();
                 return true;
             }else{
                 return false;
@@ -26,6 +21,19 @@ class SimpleAuthenticator extends DummyAuthenticator {
         else {
             return false;
         }
+
+    }
+    public function logout(): void
+    {
+        if (isset($_SESSION["user"])) {
+            unset($_SESSION["user"]);
+            unset($_SESSION["rola"]);
+            session_destroy();
+        }
+    }
+    public function getLoggedRola(): string
+    {
+        return $_SESSION['rola'] ?? throw new \Exception("Users not logged in");
     }
 
 }

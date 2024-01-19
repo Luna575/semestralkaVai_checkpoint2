@@ -9,6 +9,7 @@ use App\Core\Model;
 use App\Core\Responses\RedirectResponse;
 use App\Core\Responses\Response;
 use App\Helpers\FileStorage;
+use App\Models\Comments;
 use App\Models\Ideas;
 use http\Exception;
 use PDO;
@@ -20,10 +21,15 @@ class IdeasController extends AControllerBase
      */
     public function index(): Response
     {
+        $s= $this->request()->getValue('s');
         return  $this->html([
-            'ideas' => Ideas::getAll()
+            'ideas' => Ideas::getAll(orderBy: '`date` desc'),
+            's' => $s
         ]);
     }
+
+
+
 
     public function add(): Response
     {
@@ -56,6 +62,7 @@ class IdeasController extends AControllerBase
                 $ideas->setDate();
                 $ideas->setTitle($formData['title']);
                 $ideas->setType($formData['type']);
+                $ideas->setUser($formData['user']);
                 $ideas->save();
                 return $this->redirect($this->url("ideas.index"));
             }
@@ -80,6 +87,22 @@ class IdeasController extends AControllerBase
             ]
         );
     }
+    public function view(): Response
+    {
+        $id = (int) $this->request()->getValue('id');
+        $ideas = Ideas::getOne($id);
+
+        if (is_null($ideas)) {
+            throw new HTTPException(404);
+        }
+
+        return $this->html(
+            [
+                'ideas' => $ideas,
+                'comments' => Comments::getAll('`idea` LIKE ?', [$id],orderBy: '`date` desc')
+            ]
+        );
+    }
 
     public function save()
     {
@@ -96,6 +119,7 @@ class IdeasController extends AControllerBase
         $ideas->setType($this->request()->getValue('type'));
         $ideas->setTitle($this->request()->getValue('title'));
         $ideas->setDate();
+        $ideas->setUser($this->request()->getValue('user'));
         $ideas->setPicture($this->request()->getFiles()['picture']['name']);
         if ($this->request()->getFiles()['picture']['name'] =="" &&  $id > 0) {
             $ideas->setPicture($oldFileName);
@@ -106,7 +130,7 @@ class IdeasController extends AControllerBase
                 [
                     'ideas' => $ideas,
                     'errors' => $formErrors
-                ], 'form'
+                ], 'error'
             );
         } else {
             if ($oldFileName != "" && $this->request()->getFiles()['picture']['name'] != "") {

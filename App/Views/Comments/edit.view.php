@@ -6,11 +6,11 @@
 
 ?>
 <?php if($auth->isLogged()){?>
-    <?php if(@$data['ideas']?->getUser() == $auth->getLoggedUserName()|| $auth->getLoggedRola() =='a'){?>
+<?php if(@$data['comments']?->getUser() == $auth->getLoggedUserName()|| $auth->getLoggedRola() =='a'){?>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6 d-flex gap-4  flex-column">
-            <h1>Edit new ideas</h1>
+            <h1>Edit your comment</h1>
 
             <?php require 'form.view.php' ?>
 
@@ -34,7 +34,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-6 d-flex gap-4  flex-column">
-                <h1>If you want to edit an idea, you need to be logged!!!
+                <h1>If you want to edit your comment, you need to be logged!!!
                     Please sign up.
                 </h1>
 

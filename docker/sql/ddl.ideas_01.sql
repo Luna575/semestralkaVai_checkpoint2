@@ -5,29 +5,31 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
-DROP TABLE IF EXISTS `comment`;
-CREATE TABLE `comment` (
-                           `id` int(11) NOT NULL AUTO_INCREMENT,
-                           `text` text NOT NULL,
-                           `user` varchar(300) NOT NULL,
-                           `idea` int(11) NOT NULL,
-                           PRIMARY KEY (`id`),
-                           KEY `idea` (`idea`),
-                           KEY `user` (`user`),
-                           CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`idea`) REFERENCES `ideas` (`id`),
-                           CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`user`) REFERENCES `users` (`name`)
+DROP TABLE IF EXISTS `comments`;
+CREATE TABLE `comments` (
+                            `date` text NOT NULL DEFAULT '0000-00-00 00:00:00',
+                            `id` int(11) NOT NULL AUTO_INCREMENT,
+                            `text` text NOT NULL,
+                            `user` varchar(300) NOT NULL,
+                            `idea` int(11) NOT NULL,
+                            PRIMARY KEY (`id`),
+                            KEY `idea` (`idea`),
+                            KEY `user` (`user`),
+                            CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`idea`) REFERENCES `ideas` (`id`),
+                            CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user`) REFERENCES `users` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-DROP TABLE IF EXISTS `favorite`;
-CREATE TABLE `favorite` (
-                            `name` varchar(300) NOT NULL,
-                            `idea` int(11) NOT NULL,
-                            `id` int(11) NOT NULL AUTO_INCREMENT,
-                            PRIMARY KEY (`id`),
-                            KEY `name` (`name`),
-                            CONSTRAINT `favorite_ibfk_1` FOREIGN KEY (`name`) REFERENCES `users` (`name`),
-                            CONSTRAINT `favorite_ibfk_2` FOREIGN KEY (`idea`) REFERENCES `ideas` (`id`)
+DROP TABLE IF EXISTS `favorites`;
+CREATE TABLE `favorites` (
+                             `name` varchar(300) NOT NULL,
+                             `idea` int(11) NOT NULL,
+                             `id` int(11) NOT NULL AUTO_INCREMENT,
+                             PRIMARY KEY (`id`),
+                             KEY `name` (`name`),
+                             KEY `favorite_ibfk_2` (`idea`),
+                             CONSTRAINT `favorites_ibfk_1` FOREIGN KEY (`name`) REFERENCES `users` (`name`),
+                             CONSTRAINT `favorites_ibfk_2` FOREIGN KEY (`idea`) REFERENCES `ideas` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -44,16 +46,23 @@ CREATE TABLE `ideas` (
                          KEY `user` (`user`),
                          KEY `type` (`type`),
                          CONSTRAINT `ideas_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`name`),
-                         CONSTRAINT `ideas_ibfk_2` FOREIGN KEY (`type`) REFERENCES `theme` (`id`)
+                         CONSTRAINT `ideas_ibfk_2` FOREIGN KEY (`type`) REFERENCES `themes` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-DROP TABLE IF EXISTS `theme`;
-CREATE TABLE `theme` (
+DROP TABLE IF EXISTS `themes`;
+CREATE TABLE `themes` (
+                         `icon` varchar(30) NOT NULL,
                          `id` int(11) NOT NULL AUTO_INCREMENT,
                          `text` varchar(30) NOT NULL,
-                         PRIMARY KEY (`id`)
+                         PRIMARY KEY (`id`),
+                         UNIQUE KEY `text` (`text`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `themes` (`icon`, `id`, `text`) VALUES
+                                                ('bi bi-pencil',	1,	'Drawings'),
+                                                ('bi bi-backpack2',	2,	'Activity'),
+                                                ('bi bi-file-image\"',	3,	'Pictures');
 
 
 DROP TABLE IF EXISTS `users`;
