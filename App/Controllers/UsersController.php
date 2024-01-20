@@ -19,16 +19,20 @@ class UsersController extends AControllerBase
         // Formular bol odoslany
         if ($formData != []) {
             // Validacia
-            $users=Users::getAll();
-            foreach ($users as $user){
-                if($formData['name'] == $user->getName()){
-                    $errors[] = "Username already exists!";
-                }
+            if(str_contains($formData['name']," ")){
+                $errors[] = "Username cannot contain empty spaces";
             }
+            $users=Users::getAll('`name` LIKE ?',[$formData['name']]);
+            if($users!=null){
+                $errors[] = "Username already exists!";
+            }
+
             if ($formData['password'] != $formData['verify_password']) {
                 $errors[] = "Password and Verify password must be the same!";
             }
-
+            if (strlen($formData['password']) < 4 || strlen($formData['password']) > 13) {
+                $errors[] = "Password must be at least 4 characters long and maximal length is 13 characters!";
+            }
             // Ak nemame chyby
             if ($errors == []) {
                 $user = new Users();

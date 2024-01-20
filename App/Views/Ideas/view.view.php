@@ -10,9 +10,9 @@ use App\Models\Favorites;
 <?php if($auth->isLogged()){?>
     <?php $favorites = Favorites::getAll('`name` LIKE ? AND `idea` LIKE ? ', [$auth->getLoggedUserName(),@$data['ideas']->getId()]);?>
     <?php if($favorites == null){?>
-        <a class="nav-link" href="<?= $link->url("favorites.add", ['user'=>$auth->getLoggedUserName(), 'idea'=> @$data['ideas']->getId(), 'path'=> "ideas.view", 'par'=>['id'=>@$data['ideas']->getId()]]) ?>"><button type="button" class="btn btn-outline-dark me-2"><i class="bi bi-heart"></i></button></a>
+        <a class="btn btn-outline-dark" href="<?= $link->url("favorites.add", ['user'=>$auth->getLoggedUserName(), 'idea'=> @$data['ideas']->getId(), 'path'=> "ideas.view", 'par'=>['id'=>@$data['ideas']->getId()]]) ?>"><button type="button" class="btn btn-outline-dark me-2"><i class="bi bi-heart"></i></button></a>
     <?php }else {?>
-        <a class="nav-link" href="<?= $link->url("favorites.delete", ['user'=>$auth->getLoggedUserName(), 'idea'=> @$data['ideas']->getId(), 'path'=> "ideas.view", 'par'=>['id'=>@$data['ideas']->getId()]]) ?>"><button type="button" class="btn btn-outline-dark me-2"><i class="bi bi-heart-fill"></i></button></a>
+        <a class="btn btn-outline-dark" href="<?= $link->url("favorites.delete", ['user'=>$auth->getLoggedUserName(), 'idea'=> @$data['ideas']->getId(), 'path'=> "ideas.view", 'par'=>['id'=>@$data['ideas']->getId()]]) ?>"><button type="button" class="btn btn-outline-dark me-2"><i class="bi bi-heart-fill"></i></button></a>
     <?php }?>
 <?php }?>
         </ul>

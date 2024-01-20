@@ -16,7 +16,7 @@ $layout = 'auth';
                     </div>
                     <form class="form-signin" method="post" action="<?= $link->url("login") ?>">
                         <div class="form-label-group mb-3">
-                            <input name="login" type="text" id="login" class="form-control" placeholder="Login" aria-label=""
+                            <input name="login" type="text" id="login" class="form-control" placeholder="Username" aria-label=""
                                    required autofocus>
                         </div>
 

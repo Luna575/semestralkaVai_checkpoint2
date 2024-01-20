@@ -59,7 +59,7 @@
                     </li>
                 </ul>
                 <?php if ($auth->isLogged()) { ?>
-                    <span class="navbar-text">Prihlásený používateľ: <b><?= $auth->getLoggedUserName() ?></b></span>
+                    <span class="navbar-text">Username: <b><?= $auth->getLoggedUserName() ?></b></span>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="<?= $link->url("auth.logout") ?>"><button type="button" class="btn btn-outline-dark me-2">Logout</button></a>
@@ -86,10 +86,26 @@
 <footer class="mt-auto">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
         <li class="nav-item"><a href="<?=$link->url("home.index.view")?>" class="nav-link px-2 text-secondary">Home</a></li>
-        <li class="nav-item"><a href="<?=$link->url("ideas.index")?>" class="nav-link px-2 text-secondary">All</a></li>
-        <li class="nav-item"><a href="<?=$link->url("ideas.index")?>" class="nav-link px-2 text-secondary">Drawings</a></li>
-        <li class="nav-item"><a href="<?=$link->url("ideas.index")?>" class="nav-link px-2 text-secondary">Activity</a></li>
-        <li class="nav-item"><a href="<?=$link->url("ideas.index")?>" class="nav-link px-2 text-secondary">Pictures</a></li>
+        <li class="nav-item"><a href="<?= $link->url("ideas.index")?>"  class="nav-link px-2 text-secondary">All</a></li>
+        <?php $themes= \App\Models\Themes::getAll()?>
+        <?php if ($themes != null) {?>
+            <?php foreach ($themes as $theme) :?>
+                <?php if($theme->getText() != "" ){?>
+                    <li class="nav-item"><a href="<?=$link->url("ideas.index", ["s"=>$theme->getId()]) ?>" class="nav-link px-2 text-secondary"><?=$theme->getText()?> </a></li>
+                <?php } ?>
+            <?php endforeach;?>
+        <?php } ?>
+        <?php if ($auth->isLogged()) { ?>
+            <li class="nav-item"><a href="<?= $link->url("favorites.index.view")?>" class="nav-link px-2 text-secondary">Favorite list</a></li>
+            <li class="nav-item">
+                <a class="nav-link px-2 text-secondary" href="<?= $link->url("auth.logout") ?>">Logout</a>
+            </li>
+        <?php } else { ?>
+            <li class="nav-item">
+                <a class="nav-link px-2 text-secondary" href="<?= \App\Config\Configuration::LOGIN_URL ?>">Login</a>
+            </li>
+            <li class="nav-item"><a class="nav-link px-2 text-secondary" href="<?= $link->url("users.index")?>">Create account</a></li>
+        <?php } ?>
     </ul>
 </footer>
 </body>

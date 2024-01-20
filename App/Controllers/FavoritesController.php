@@ -26,7 +26,7 @@ class FavoritesController extends AControllerBase
         $errors = [];
         $favorites = Favorites::getAll("`name` LIKE ? AND `idea` LIKE ?",[$user,$idea]);
         if($favorites!=null){
-           $errors[]= "Already exists!";
+            $errors[]= "Already exists!";
         }
         if ($user==null) {
             $errors[] = "User was not found!";
@@ -34,14 +34,14 @@ class FavoritesController extends AControllerBase
         if ($idea==null) {
             $errors[] = "Idea was not found!";
         }
-            // Ak nemame chyby
+        // Ak nemame chyby
         if ($errors == []) {
-                $favorites = new Favorites();
-                $favorites->setIdea($idea);
-                $favorites->setName($user);
-                $favorites->save();
+            $favorites = new Favorites();
+            $favorites->setIdea($idea);
+            $favorites->setName($user);
+            $favorites->save();
         }
-       return new RedirectResponse($this->url($path,$parameters));
+        return new RedirectResponse($this->url($path,$parameters));
     }
     public function delete()
     {

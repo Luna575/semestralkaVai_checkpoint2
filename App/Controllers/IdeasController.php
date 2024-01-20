@@ -183,4 +183,44 @@ class IdeasController extends AControllerBase
         }
         return $errors;
     }
+    public function getPicture(): Response
+    {
+        $picture=$this->request()->getValue('picture');
+        $id = $this->request()->getValue('id');
+        if ($id == null) {
+        $ideas = Ideas::getAll("`picture` LIKE ? ", [
+            "%$picture"
+        ]);
+        } else {
+            $ideas = Ideas::getAll("`picture` LIKE ?  AND `id` != ?", [
+                "%$picture", $id
+            ]);
+        }
+        if ($ideas != null){
+            $result = false;
+        }else{
+            $result=true;
+        }
+        return $this->json($result);
+    }
+    public function getTitle(): Response
+    {
+        $title = $this->request()->getValue('title');
+        $id = $this->request()->getValue('id');
+        if ($id == null) {
+            $ideas = Ideas::getAll("`title` LIKE ? ", [
+                $title
+            ]);
+        } else {
+            $ideas = Ideas::getAll("`title` LIKE ?  AND `id` != ?", [
+                $title, $id
+            ]);
+        }
+        if ($ideas != null){
+            $result = false;
+        }else{
+            $result=true;
+        }
+        return $this->json($result);
+    }
 }
