@@ -30,7 +30,7 @@ $layout = 'root';
                                     <a class="btn btn-sm btn-outline-secondary" href="<?= $link->url('ideas.view', ['id' => $ideas->getId()]) ?>" role="button" aria-disabled="false">View</a>
                                     <?php if($auth->isLogged()){?>
                                         <?php if($ideas->getUser() == $auth->getLoggedUserName() || $auth->getLoggedRola() =='a'){?>
-                                            <a href="<?= $link->url('ideas.edit', ['id' => $ideas->getId()]) ?>" class="btn btn-primary">Edit</a>
+                                            <a href="<?= $link->url('ideas.edit', ['id' => $ideas->getId(),'s'=>$data['s'], 'path'=>'ideas.index']) ?>" class="btn btn-primary">Edit</a>
                                             <a href="<?= $link->url('ideas.delete', ['id' => $ideas->getId(), 's'=>$data['s'], 'path'=>'ideas.index']) ?>" class="btn btn-danger">Delete</a>
                                         <?php }?>
                                         <?php $favorites = Favorites::getAll('`name` LIKE ? AND `idea` LIKE ? ', [$auth->getLoggedUserName(),$ideas->getId()]);?>

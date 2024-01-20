@@ -30,7 +30,7 @@ $layout = 'root';
                                 <div class="btn-group">
                                     <a class="btn btn-sm btn-outline-secondary" href="<?= $link->url('ideas.view', ['id' => $idea->getId()]) ?>" role="button" aria-disabled="false">View</a>
                                         <?php if($idea->getUser() == $auth->getLoggedUserName() || $auth->getLoggedRola() =='a'){?>
-                                            <a href="<?= $link->url('ideas.edit', ['id' => $idea->getId()]) ?>" class="btn btn-primary">Edit</a>
+                                            <a href="<?= $link->url('ideas.edit', ['id' => $idea->getId(), 'path'=>'favorites.index']) ?>" class="btn btn-primary">Edit</a>
                                             <a href="<?= $link->url('ideas.delete', ['id' => $idea->getId(),'path'=>'favorites.index']) ?>" class="btn btn-danger">Delete</a>
                                         <?php }?>
                                     <a class="btn btn-outline-dark heart" href="<?= $link->url("favorites.delete", ['user'=>$auth->getLoggedUserName(), 'idea'=> $idea->getId(), 'path'=> "favorites.index"]) ?>"><i class="bi bi-heart-fill"></i></a>

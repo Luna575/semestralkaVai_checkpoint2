@@ -20,7 +20,8 @@
 <div class="message2" role="alert" id="message2">
 </div>
 <form method="post" action="<?= $link->url('ideas.save') ?>" enctype="multipart/form-data">
-
+    <input type="hidden" name="path" value="<?= @$data['path'] ?>">
+    <input type="hidden" name="s" value="<?= @$data['s'] ?>">
     <input type="hidden" name="id" value="<?= @$data['ideas']?->getId() ?>">
     <input type="hidden" name="user" value="<?= $auth->getLoggedUserName()?>">
     <label for="inputGroupFile02" class="form-label">Image file</label>

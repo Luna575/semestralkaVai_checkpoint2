@@ -77,14 +77,17 @@ class IdeasController extends AControllerBase
                 return $this->redirect($this->url("ideas.index"));
             }
         }
-
-        return $this->html(["errors" => $errors, "formData" => $formData], "add");
+        $s = "";
+        $path= "ideas.index";
+        return $this->html(["errors" => $errors, "formData" => $formData, "path"=>$path, "s"=>$s], "add");
     }
 
 
     public function edit(): Response
     {
         $id = (int) $this->request()->getValue('id');
+        $s = $this->request()->getValue('s') != null ? $this->request()->getValue('s'):"";
+        $path= (string)$this->request()->getValue('path') != null ? $this->request()->getValue('path'):"ideas.index";
         $ideas = Ideas::getOne($id);
 
         if (is_null($ideas)) {
@@ -93,7 +96,9 @@ class IdeasController extends AControllerBase
 
         return $this->html(
             [
-                'ideas' => $ideas
+                'ideas' => $ideas,
+                'path'=>$path,
+                's'=>$s
             ]
         );
     }
@@ -117,6 +122,8 @@ class IdeasController extends AControllerBase
     public function save()
     {
         $id = (int)$this->request()->getValue('id');
+        $s = $this->request()->getValue('s') != null ? $this->request()->getValue('s'):"";
+        $path= (string)$this->request()->getValue('path');
         $oldFileName = "";
 
         if ($id > 0) {
@@ -139,7 +146,9 @@ class IdeasController extends AControllerBase
             return $this->html(
                 [
                     'ideas' => $ideas,
-                    'errors' => $formErrors
+                    'errors' => $formErrors,
+                    'path'=>$path,
+                    's'=>$s
                 ], 'error'
             );
         } else {
@@ -151,7 +160,7 @@ class IdeasController extends AControllerBase
                 $ideas->setPicture($newFileName);
             }
             $ideas->save();
-            return new RedirectResponse($this->url("ideas.index"));
+            return new RedirectResponse($this->url($path,['s'=>$s]));
         }
     }
 
