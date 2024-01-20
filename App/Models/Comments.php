@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Core\Model;
-
+date_default_timezone_set('Europe/Bratislava');
 class Comments extends Model
 {
     protected ?int $id = null;
@@ -18,7 +18,7 @@ class Comments extends Model
 
     public function setDate(): void
     {
-        $this->date = date("Y-m-d h:m:s",time());
+        $this->date = date("Y-m-d H:i:s",time());
     }
     protected int $idea;
 

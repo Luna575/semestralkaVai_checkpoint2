@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Core\Model;
 use MongoDB\BSON\Timestamp;
-
+date_default_timezone_set('Europe/Bratislava');
 class Ideas extends Model
 {
     protected ?int $id = null;
@@ -52,7 +52,7 @@ class Ideas extends Model
 
     public function setDate(): void
     {
-        $this->date = date("Y-m-d h:m:s",time());
+        $this->date = date("Y-m-d H:i:s",time());
     }
     public function getId(): ?int
     {
