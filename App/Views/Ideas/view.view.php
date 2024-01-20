@@ -5,7 +5,7 @@
 /** @var \App\Core\IAuthenticator $auth */
 use App\Models\Favorites;
 ?>
-<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end text-end">
+<div class="position-relative d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end text-end">
         <ul class="heart">
 <?php if($auth->isLogged()){?>
     <?php $favorites = Favorites::getAll('`name` LIKE ? AND `idea` LIKE ? ', [$auth->getLoggedUserName(),@$data['ideas']->getId()]);?>
