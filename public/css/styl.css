@@ -37,7 +37,7 @@ h3 {
     object-fit: cover;
     height: 200px;
 }
-footer,header {
+footer,header, .comments {
     font-size: x-large;
 }
 
@@ -53,6 +53,7 @@ h1:hover{
 }
 .card{
     font-style: italic;
+    font-size: x-large;
 }
 .card-img:hover, .card-body:hover {
     box-shadow: 0 0 2px 2px rgba(0, 170, 120, 100);
