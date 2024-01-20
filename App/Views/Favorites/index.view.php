@@ -33,7 +33,7 @@ $layout = 'root';
                                             <a href="<?= $link->url('ideas.edit', ['id' => $idea->getId()]) ?>" class="btn btn-primary">Edit</a>
                                             <a href="<?= $link->url('ideas.delete', ['id' => $idea->getId()]) ?>" class="btn btn-danger">Delete</a>
                                         <?php }?>
-                                    <a class="btn btn-outline-dark" href="<?= $link->url("favorites.delete", ['user'=>$auth->getLoggedUserName(), 'idea'=> $idea->getId(), 'path'=> "favorites.index"]) ?>"><i class="bi bi-heart-fill"></i></a>
+                                    <a class="btn btn-outline-dark heart" href="<?= $link->url("favorites.delete", ['user'=>$auth->getLoggedUserName(), 'idea'=> $idea->getId(), 'path'=> "favorites.index"]) ?>"><i class="bi bi-heart-fill"></i></a>
                                 </div>
                                 <small class="text-muted"><?= $idea->getDate()?> </small>
                             </div>

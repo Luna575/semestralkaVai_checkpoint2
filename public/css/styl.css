@@ -54,9 +54,26 @@ h1:hover{
 .card{
     font-style: italic;
 }
-.card-img:hover, .card-body:hover{
+.card-img:hover, .card-body:hover {
     box-shadow: 0 0 2px 2px rgba(0, 170, 120, 100);
+}
+.card-img:hover{
+    -webkit-filter: sepia(25%);
 }
 .message, .message2 {
     visibility: hidden;
 }
+.bi-heart, .bi-heart-fill{
+   font-size: large;
+    color: seagreen;
+}
+.heart.btn-outline-dark:hover, .heart.btn-outline-dark:hover{
+    background-color: lightgreen;
+}
+.plus.btn-outline-dark:hover {
+  background-color: seagreen;
+}
+.plus{
+    border-radius: 45%;
+}
+

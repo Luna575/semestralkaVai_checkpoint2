@@ -86,7 +86,8 @@ class CommentsController extends AControllerBase
             return $this->html(
                 [
                     'comments' => $comments,
-                    'errors' => $formErrors
+                    'errors' => $formErrors,
+                    'idea'=> $this->request()->getValue('idea')
                 ], 'error'
             );
         } else {

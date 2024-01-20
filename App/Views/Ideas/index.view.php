@@ -17,8 +17,8 @@ $layout = 'root';
        <?php $pocet = 0;?>
         <div class="row g-3 justify-content-center"">
         <?php foreach ($data['ideas'] as $ideas): ?>
-            <div class="d-md-block d-lg-block d-xl-block  col-md-12 col-lg-4 col-xl-3">
                 <?php if($ideas->getType() == $data['s']|| $data['s']==null) {?>
+                <div class="d-md-block d-lg-block d-xl-block  col-md-12 col-lg-4 col-xl-3">
                         <?php $pocet++; ?>
                     <div class="card shadow-sm">
                         <img class="card-img" width="100%" height="350px" src="<?= \App\Helpers\FileStorage::UPLOAD_DIR . '/' . $ideas->getPicture()?>" alt="...">
@@ -35,9 +35,9 @@ $layout = 'root';
                                         <?php }?>
                                         <?php $favorites = Favorites::getAll('`name` LIKE ? AND `idea` LIKE ? ', [$auth->getLoggedUserName(),$ideas->getId()]);?>
                                         <?php if($favorites == null){?>
-                                            <a class="btn btn-outline-dark" href="<?= $link->url("favorites.add", ['user'=>$auth->getLoggedUserName(), 'idea'=> $ideas->getId(), 'path'=> "ideas.index"]) ?>"><i class="bi bi-heart"></i></a>
+                                            <a class="btn btn-outline-dark heart" href="<?= $link->url("favorites.add", ['user'=>$auth->getLoggedUserName(), 'idea'=> $ideas->getId(), 'path'=> "ideas.index",'par'=>$data['s']]) ?>"><i class="bi bi-heart"></i></a>
                                         <?php }else {?>
-                                            <a class="btn btn-outline-dark" href="<?= $link->url("favorites.delete", ['user'=>$auth->getLoggedUserName(), 'idea'=> $ideas->getId(), 'path'=> "ideas.index"]) ?>"><i class="bi bi-heart-fill"></i></a>
+                                            <a class="btn btn-outline-dark heart" href="<?= $link->url("favorites.delete", ['user'=>$auth->getLoggedUserName(), 'idea'=> $ideas->getId(), 'path'=> "ideas.index", 'par'=>$data['s']]) ?>"><i class="bi bi-heart-fill"></i></a>
                                         <?php }?>
                                     <?php }?>
                                 </div>
@@ -45,8 +45,8 @@ $layout = 'root';
                             </div>
                         </div>
                     </div>
+                </div>
                 <?php }?>
-            </div>
         <?php endforeach; ?>
         <?php if ($pocet ==0) { ?>
         <div class="col-md-8 p-lg-5 mx-auto my-5">

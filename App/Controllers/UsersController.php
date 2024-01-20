@@ -22,6 +22,9 @@ class UsersController extends AControllerBase
             if(str_contains($formData['name']," ")){
                 $errors[] = "Username cannot contain empty spaces";
             }
+            if(strlen($formData['name']) > 300){
+                $errors[] = "Username cannot have more then 300 characters";
+            }
             $users=Users::getAll('`name` LIKE ?',[$formData['name']]);
             if($users!=null){
                 $errors[] = "Username already exists!";

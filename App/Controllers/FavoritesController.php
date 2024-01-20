@@ -41,7 +41,7 @@ class FavoritesController extends AControllerBase
             $favorites->setName($user);
             $favorites->save();
         }
-        return new RedirectResponse($this->url($path,$parameters));
+        return new RedirectResponse($this->url($path,["s"=>$parameters[0]]));
     }
     public function delete()
     {
@@ -55,7 +55,7 @@ class FavoritesController extends AControllerBase
             throw new HTTPException(404);
         } else {
             $favorites[0]->delete();
-            return new RedirectResponse($this->url($path,$parameters));
+            return new RedirectResponse($this->url($path,["s"=>$parameters[0]]));
         }
     }
 }

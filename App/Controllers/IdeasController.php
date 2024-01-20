@@ -44,6 +44,9 @@ class IdeasController extends AControllerBase
             if ($formData['picture']['name'] != "" && !in_array($formData['picture']['type'], ['image/jpeg', 'image/png'])) {
                 $errors[] = "The image must be of JPG or PNG type!";
             }
+            if ($formData['picture']['name'] != "" && strlen($formData['picture']['name'])>300) {
+                $errors[] = "Image file name is to long, max length is 300 characters!";
+            }
             if (empty($formData['title'])) {
                 $errors[] = "The field Title of the idea must be filled!";
             }
@@ -52,6 +55,12 @@ class IdeasController extends AControllerBase
             }
             if (!empty($formData['title'])  && strlen($formData['title']) > 30) {
                 $errors[] = "The number of characters in the title of the idea  must be max 30 characters!";
+            }
+            if ($formData['type'] != "" && strlen($formData['type']) > 1) {
+                $errors[] = "The number of characters in the idea post type must be 1!";
+            }
+            if (empty($formData['user'])) {
+                $errors[] = "You need to be logged!";
             }
 
             // Ak nemame chyby
@@ -168,6 +177,9 @@ class IdeasController extends AControllerBase
         if ($this->request()->getFiles()['picture']['name'] != "" && !in_array($this->request()->getFiles()['picture']['type'], ['image/jpeg', 'image/png'])) {
             $errors[] = "The image must be of JPG or PNG type!";
         }
+        if ($this->request()->getFiles()['picture']['name'] != "" && strlen($this->request()->getFiles()['picture']['name'])>300) {
+            $errors[] = "Image file name is to long, max length is 300 characters!";
+        }
 
         if ($this->request()->getValue('title') == "") {
             $errors[] = "The field Title of the idea must be filled!";
@@ -180,6 +192,9 @@ class IdeasController extends AControllerBase
         }
         if ($this->request()->getValue('type') != "" && strlen($this->request()->getValue('type')) > 1) {
             $errors[] = "The number of characters in the idea post type must be 1!";
+        }
+        if ($this->request()->getValue('user') =="") {
+            $errors[] = "You need to be logged!";
         }
         return $errors;
     }
