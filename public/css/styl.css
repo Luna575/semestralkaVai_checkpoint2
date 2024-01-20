@@ -35,7 +35,7 @@ h3 {
 
 .card-img {
     object-fit: cover;
-    height: 200px;
+    height: 300px;
 }
 footer,header,.form-control, .comments {
     font-size: x-large;
@@ -82,4 +82,6 @@ h1:hover{
 .plus{
     border-radius: 45%;
 }
-
+div{
+    word-wrap:break-word
+}
