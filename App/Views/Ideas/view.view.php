@@ -46,7 +46,7 @@ use App\Models\Favorites;
                 <div class="welcome"><h1>Comments:</h1></div>
             </div>
             <?php foreach ($data['comments'] as $comments): ?>
-                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start text-start ">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start text-start position-relative p-3 p-md-5 m-md-3 d-md-block">
                         <div class="head">
                             <p class="text">Created by:  <?=$comments->getUser() ?></p>
                             <p class="text"><?= $comments->getText() ?></p>
