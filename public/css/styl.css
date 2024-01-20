@@ -37,10 +37,15 @@ h3 {
     object-fit: cover;
     height: 200px;
 }
-footer,header, .comments {
+footer,header,.form-control, .comments {
     font-size: x-large;
 }
-
+form, .form-label-group{
+    font-size: xx-large;
+}
+h4{
+    font-size: xxx-large;
+}
 h1:hover{
     font-size: xxx-large;
     color: black;
@@ -48,7 +53,7 @@ h1:hover{
 .dropdown-item:hover {
     background-color: mediumseagreen;
 }
-.btn, .form-control, .text-muted {
+.btn, .text-muted {
     font-size: large;
 }
 .card{

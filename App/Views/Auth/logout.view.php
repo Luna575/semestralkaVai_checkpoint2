@@ -7,9 +7,9 @@ $layout = 'auth';
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5">
-            You sing out. <br>
+           <h4> You sing out. <br>
             You can <a href="<?= \App\Config\Configuration::LOGIN_URL ?>">sign in</a> again or return <a
-                    href="<?= $link->url("home.index") ?>">back</a> to home page.
+                    href="<?= $link->url("home.index") ?>">back</a> to home page.</h4>
         </div>
     </div>
 </div>

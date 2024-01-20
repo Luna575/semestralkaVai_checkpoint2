@@ -158,6 +158,8 @@ class IdeasController extends AControllerBase
     public function delete()
     {
         $id = (int) $this->request()->getValue('id');
+        $s = $this->request()->getValue('s') != null ? $this->request()->getValue('s'):"";
+        $path= (string)$this->request()->getValue('path');
         $ideas = Ideas::getOne($id);
 
         if (is_null($ideas)) {
@@ -173,7 +175,7 @@ class IdeasController extends AControllerBase
                 $comment->delete();
             }
             $ideas->delete();
-            return new RedirectResponse($this->url("ideas.index"));
+            return new RedirectResponse($this->url($path,['s'=>$s]));
         }
     }
 
