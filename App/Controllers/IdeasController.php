@@ -10,6 +10,7 @@ use App\Core\Responses\RedirectResponse;
 use App\Core\Responses\Response;
 use App\Helpers\FileStorage;
 use App\Models\Comments;
+use App\Models\Favorites;
 use App\Models\Ideas;
 use http\Exception;
 use PDO;
@@ -163,6 +164,14 @@ class IdeasController extends AControllerBase
             throw new HTTPException(404);
         } else {
             FileStorage::deleteFile($ideas->getPicture());
+            $favorites = Favorites::getAll(' `idea` LIKE ? ', [$ideas->getId()]);
+            foreach ($favorites as $favorite){
+                $favorite->delete();
+            }
+            $comments = Comments::getAll(' `idea` LIKE ? ', [$ideas->getId()]);
+            foreach ($comments as $comment){
+                $comment->delete();
+            }
             $ideas->delete();
             return new RedirectResponse($this->url("ideas.index"));
         }
