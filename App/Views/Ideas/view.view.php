@@ -27,7 +27,7 @@ use App\Models\Favorites;
     <img class="d-block w-100" src="<?= \App\Helpers\FileStorage::UPLOAD_DIR . '/' .@$data['ideas']->getPicture() ?>" alt="...">
 </div>
 
-<div class=" d-none d-md-block">
+<div class="position-relative p-3 p-md-5 m-md-3 d-md-block text-right">
     <h3><?=@$data['ideas']->getText() ?></h3>
     <h2>Created by: <?=@$data['ideas']->getUser() ?></h2>
 </div>
